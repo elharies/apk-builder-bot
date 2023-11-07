@@ -662,7 +662,7 @@ app.view("view_cancel_build", async ({ ack, body, view, client }) => {
     const pipelineId = view["private_metadata"]
     await cancelPipeline(pipelineId).then(async res => {
         console.log(res.data)
-        if (res.data.detailed_status.text === undefined || !res.data.detailed_status.text.contains('canceled')) {
+        if (res.data.detailed_status.text === undefined || res.data.detailed_status.text !== 'canceled') {
             await sendErrorMsgCancelPipeline(user)
             return
         }
