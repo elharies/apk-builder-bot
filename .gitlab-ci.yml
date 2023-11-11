@@ -9,6 +9,8 @@ cache:
 
 deploy:
   stage: deploy
+  tags:
+    - node
   only:
     - master
   before_script:
