@@ -1,0 +1,20 @@
+image: node:20.9-alpine
+stages:
+  - deploy
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+deploy:
+  stage: deploy
+  only:
+    - master
+  before_script:
+    - npm install -i vercel
+    - npm install
+  script:
+    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+    - vercel build --prod --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN

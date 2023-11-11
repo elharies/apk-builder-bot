@@ -244,3 +244,4 @@ fabric.properties
 .idea/slack-bolt-app.iml
 .gitignore
 
+.vercel
