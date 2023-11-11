@@ -15,9 +15,9 @@ deploy:
     - master
   before_script:
     - npm install
-    - npm install -g vercel
     - sudo chown -R root:$(whoami) /usr/local/lib/node_modules/
     - sudo chmod -R 775 /usr/local/lib/node_modules/
+    - npm install -g vercel
   script:
     - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
     - vercel build --prod --token=$VERCEL_TOKEN
